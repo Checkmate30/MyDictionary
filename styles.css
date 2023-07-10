@@ -1,8 +1,9 @@
 body {
     margin: 0px;
+    font-family: ;
 }
 
-.logo > img {
+.logo>img {
     width: 190px;
     height: 130px;
 }
@@ -26,14 +27,43 @@ nav {
     height: 50px;
     width: 200px;
     align-self: center;
-    background-color: black;
+    background-color: rgb(38, 38, 38);
     color: white;
     font-weight: 900;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 28px;
+    outline: none;
+    border: none;
 }
 
 #history-button:hover {
     background-color: gray;
     box-shadow: 0px 0px 2px 2px rgb(60, 163, 231);
+}
+
+/* ===================================================================================================== */
+
+#search-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    background-color: lightgray;
+    border-radius: 40px;
+    outline: none;
+    border: none;
+    height: 80px;
+    width: 500px;
+    float: left;
+    font-size: 50px;
+    padding: 25px;
+}
+
+#search-icon-container>img {
+    height: 80px;
+    width: 80px;
+    margin-left: 40px;
 }
