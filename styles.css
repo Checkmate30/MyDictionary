@@ -1,0 +1,39 @@
+body {
+    margin: 0px;
+}
+
+.logo > img {
+    width: 190px;
+    height: 130px;
+}
+
+.logo {
+    display: inline-flex;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+
+#history-button {
+    height: 50px;
+    width: 200px;
+    align-self: center;
+    background-color: black;
+    color: white;
+    font-weight: 900;
+    border-radius: 5px;
+    font-size: 28px;
+}
+
+#history-button:hover {
+    background-color: gray;
+    box-shadow: 0px 0px 2px 2px rgb(60, 163, 231);
+}
