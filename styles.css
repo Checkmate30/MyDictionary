@@ -87,3 +87,35 @@ input {
 
 /* History page formatting */
 
+#history-container {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card-body {
+    margin: 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px grey;
+    height: 300px;
+    width: 200px;
+    overflow: auto;
+    justify-self: center;
+}
+
+.word-container {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.description-container {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 40px;
+    padding: 10px;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
