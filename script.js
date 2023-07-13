@@ -1,3 +1,13 @@
+// States & declarations
+let searches = [];
+let currentSearch = "";
+
+//Selectors
+const searchBox = document.getElementById("search-box");
+const resultContainer = document.getElementById("result");
+const historyContainer = document.getElementById('history-container');
+
+
 // Function for history button clicked.
 function historyPageButton() {
   window.location.href = "history.html";
@@ -7,6 +17,10 @@ function historyPageButton() {
     let getWords = JSON.parse(getArray);
     console.log(getWords);
   }
+
+  //for each word, generate a card in card section
+
+
 
 getWordsFromLocalStorage();
 }
@@ -22,14 +36,6 @@ function deleteWordsFromLocalStorage() {}
 function searchPageButton() {
   window.location.href = "index.html";
 }
-
-// States & declarations
-let searches = [];
-let currentSearch = "";
-
-//Selectors
-const searchBox = document.getElementById("search-box");
-const resultContainer = document.getElementById("result");
 
 //function to call API, fetch and display the result in DOM
 function searchButtonClicked() {
