@@ -1,10 +1,12 @@
 body {
     margin: 0px;
+    background-color: beige;
 }
 
 .logo>img {
     width: 190px;
     height: 130px;
+    mix-blend-mode: multiply;
 }
 
 .logo {
@@ -16,10 +18,14 @@ h1 {
 }
 
 nav {
+    background-color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-right: 50px;
+    border-bottom: 2px solid lightgray;
+    border-radius: 25px;
+    box-shadow: 0px 1px 5px darkgray;
 }
 
 #history-button,
@@ -54,7 +60,7 @@ nav {
 }
 
 input {
-    background-color: lightgray;
+    background-color: black;
     border-radius: 40px;
     outline: none;
     border: none;
@@ -63,6 +69,7 @@ input {
     float: left;
     font-size: 50px;
     padding: 25px;
+    color: white;
 }
 
 #search-icon-container>img {
@@ -85,7 +92,7 @@ input {
 
 #result {
     margin-top: 50px;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     /* box-shadow: 0px 0px 5px 1px grey; */
@@ -93,6 +100,7 @@ input {
     width: 620px;
     overflow: auto;
     justify-self: center;
+    background-color:inherit;
 }
 
 /* ============================================================================================= */
@@ -200,7 +208,7 @@ input {
     }
 
     input {
-        background-color: lightgray;
+        background-color: black;
         border-radius: 40px;
         outline: none;
         border: none;
@@ -227,6 +235,8 @@ input {
             width: 310px;
             overflow: auto;
             justify-self: center;
+            background-color: inherit;
+            font-size: small;
         }
 
         .title-heading {
