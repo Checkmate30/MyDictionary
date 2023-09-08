@@ -5,43 +5,50 @@ let currentSearch = "";
 //Selectors
 const searchBox = document.getElementById("search-box");
 const resultContainer = document.getElementById("result");
-const historyContainer = document.getElementById('history-container');
-
+const historyContainer = document.getElementById("history-container");
 
 // Function for history button clicked.
 function historyPageButton() {
   window.location.href = "history.html";
 
-  
-
   //for each word, generate a card in card section
 
-
-
-// getWordsFromLocalStorage();
+  // getWordsFromLocalStorage();
 }
 
 // Function to get words from storage as soon as the history page loads.
 function getWordsFromLocalStorage() {
   let getArray = localStorage.getItem("searches");
   let getWords = JSON.parse(getArray);
-  console.log(getWords);
+  // console.log(getWords);
 
-  getWords.forEach(element => {
+  getWords.forEach((element) => {
     const currWord = element.word;
     const currMeaning = element.meaning;
-    console.log(currWord + ": " + currMeaning);
+    // console.log(currWord + ": " + currMeaning);
+
+    const newOuterDiv = document.createElement("div");
+    newOuterDiv.classList.add("card-body");
+    const newDivForWord = document.createElement("div");
+    newDivForWord.classList.add("word-container");
+    newDivForWord.innerText = "Word: " + currWord;
+    const newDivForMeaning = document.createElement("div");
+    newDivForMeaning.classList.add("description-container");
+    newDivForMeaning.innerText = currMeaning;
+    const newDivForButton = document.createElement("div");
+    newDivForButton.setAttribute("id", "delete-button");
+    const newIMG = document.createElement("img");
+    newIMG.src = "src\img\delete.png";
+    newIMG.alt = "Delete_Button";
+    newIMG.setAttribute("onclick", "deleteWordsFromLocalStorage()");
+    newDivForButton.appendChild(newIMG);
     
+    historyContainer.appendChild(newOuterDiv).append(newDivForWord, newDivForMeaning, newDivForButton);
   });
 }
 
-
-
-
 // funtion to delete a card from history page
 function deleteWordsFromLocalStorage() {}
-
-
 
 // Function for Search button clicked to come back to search page.
 function searchPageButton() {
