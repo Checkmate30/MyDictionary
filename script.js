@@ -12,18 +12,29 @@ const historyContainer = document.getElementById('history-container');
 function historyPageButton() {
   window.location.href = "history.html";
 
-  function getWordsFromLocalStorage() {
-    let getArray = localStorage.getItem("searches");
-    let getWords = JSON.parse(getArray);
-    console.log(getWords);
-  }
+  
 
   //for each word, generate a card in card section
 
 
 
-getWordsFromLocalStorage();
+// getWordsFromLocalStorage();
 }
+
+// Function to get words from storage as soon as the history page loads.
+function getWordsFromLocalStorage() {
+  let getArray = localStorage.getItem("searches");
+  let getWords = JSON.parse(getArray);
+  console.log(getWords);
+
+  getWords.forEach(element => {
+    const currWord = element.word;
+    const currMeaning = element.meaning;
+    console.log(currWord + ": " + currMeaning);
+    
+  });
+}
+
 
 
 
