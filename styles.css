@@ -126,8 +126,8 @@ input {
     box-shadow: 0px 0px 5px 1px grey;
     height: 300px;
     width: 200px;
-    overflow: auto;
     justify-self: center;
+    position: relative;
 }
 
 .word-container {
@@ -143,6 +143,12 @@ input {
     padding: 10px;
     font-size: 15px;
     text-decoration: underline;
+    max-height: 120px;
+    overflow: auto;
+}
+
+#delete-button {
+    margin-bottom: 0px;
 }
 
 #delete-button>img {
@@ -150,7 +156,6 @@ input {
     width: 30px;
     float: right;
     margin-right: 8px;
-    margin-top: 150px;
     border-radius: 6px;
 }
 

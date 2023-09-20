@@ -38,7 +38,7 @@ function getWordsFromLocalStorage() {
     const newDivForButton = document.createElement("div");
     newDivForButton.setAttribute("id", "delete-button");
     const newIMG = document.createElement("img");
-    newIMG.src = "src\img\delete.png";
+    newIMG.src = "src/img/delete.png";
     newIMG.alt = "Delete_Button";
     newIMG.setAttribute("onclick", "deleteWordsFromLocalStorage()");
     newDivForButton.appendChild(newIMG);
