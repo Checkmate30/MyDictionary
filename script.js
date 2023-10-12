@@ -10,22 +10,17 @@ const historyContainer = document.getElementById("history-container");
 // Function for history button clicked.
 function historyPageButton() {
   window.location.href = "history.html";
-
-  //for each word, generate a card in card section
-
-  // getWordsFromLocalStorage();
 }
 
 // Function to get words from storage as soon as the history page loads.
 function getWordsFromLocalStorage() {
   let getArray = localStorage.getItem("searches");
   let getWords = JSON.parse(getArray);
-  // console.log(getWords);
 
+  //Building a card for each word found in storage
   getWords.forEach((element) => {
     const currWord = element.word;
     const currMeaning = element.meaning;
-    // console.log(currWord + ": " + currMeaning);
 
     const newOuterDiv = document.createElement("div");
     newOuterDiv.classList.add("card-body");
@@ -42,8 +37,10 @@ function getWordsFromLocalStorage() {
     newIMG.alt = "Delete_Button";
     newIMG.setAttribute("onclick", "deleteWordsFromLocalStorage()");
     newDivForButton.appendChild(newIMG);
-    
-    historyContainer.appendChild(newOuterDiv).append(newDivForWord, newDivForMeaning, newDivForButton);
+
+    historyContainer
+      .appendChild(newOuterDiv)
+      .append(newDivForWord, newDivForMeaning, newDivForButton);
   });
 }
 
@@ -65,35 +62,33 @@ function searchButtonClicked() {
   async function getResult() {
     //getting response
     const response = await fetch(api_call + [currentSearch]);
-
     //parse to JSON
     const data = await response.json();
     // console.log(data[0].meanings[0].definitions[0].definition);
     const receivedDefinition = data[0].meanings[0].definitions[0].definition;
 
-    if (response === null || response === undefined) {
-      resultContainer.innerText =
-        "No context found for your input. Try searching for a different word.";
-    } else {
-      //push the definition on html div
-      resultContainer.style.boxShadow = "0px 0px 5px 1px skyblue";
-      resultContainer.innerText = receivedDefinition;
-      // document.createElement("p");
-    }
+    //Getting old words from storage
+    let oldItems = JSON.parse(localStorage.getItem("searches")) || [];
+
+    //find length of stored array
+    let arrayLength = oldItems.length;
 
     //Saving current word with description in a new object
     const wordObj = {
+      id: [arrayLength + 1],
       word: [currentSearch],
       meaning: [receivedDefinition],
     };
 
-    //adding current object to array
-    searches.push(wordObj);
-    // console.log(searches);
+    console.log(wordObj);
+    console.log(arrayLength);
 
-    //storing array to the local storage
-    let string = JSON.stringify(searches);
-    localStorage.setItem("searches", string);
+    //adding current word object to existing array
+    oldItems.push(wordObj);
+
+    //saving the updated array.
+    localStorage.setItem("searches", JSON.stringify(oldItems));
   }
+
   getResult();
 }
