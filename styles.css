@@ -100,7 +100,7 @@ input {
     border-radius: 8px;
     padding: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /* box-shadow: 0px 0px 5px 1px grey; */
+    box-shadow: 0px 0px 5px 1px grey;
     height: 100px;
     width: 620px;
     overflow: auto;

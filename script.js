@@ -4,7 +4,7 @@ let currentSearch = "";
 
 //Selectors
 const searchBox = document.getElementById("search-box");
-const resultContainer = document.getElementById("result");
+const resultContainer = document.getElementById("search-container");
 const historyContainer = document.getElementById("history-container");
 
 // Function for history button clicked.
@@ -35,6 +35,7 @@ function getWordsFromLocalStorage() {
     const newIMG = document.createElement("img");
     newIMG.src = "src/img/delete.png";
     newIMG.alt = "Delete_Button";
+    // newIMG.setAttribute("id", [arrayLength + 1]);
     newIMG.setAttribute("onclick", "deleteWordsFromLocalStorage()");
     newDivForButton.appendChild(newIMG);
 
@@ -66,6 +67,11 @@ function searchButtonClicked() {
     const data = await response.json();
     // console.log(data[0].meanings[0].definitions[0].definition);
     const receivedDefinition = data[0].meanings[0].definitions[0].definition;
+
+    const resultDiv = document.createElement("div");
+    resultDiv.setAttribute("id", "result");
+    resultDiv.innerHTML = receivedDefinition;
+    resultContainer.appendChild(resultDiv);
 
     //Getting old words from storage
     let oldItems = JSON.parse(localStorage.getItem("searches")) || [];
