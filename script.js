@@ -7,6 +7,7 @@ const searchBox = document.getElementById("search-box");
 const resultContainer = document.getElementById("search-container");
 const historyContainer = document.getElementById("history-container");
 
+
 // Function for history button clicked.
 function historyPageButton() {
   window.location.href = "history.html";
@@ -16,6 +17,8 @@ function historyPageButton() {
 function getWordsFromLocalStorage() {
   let getArray = localStorage.getItem("searches");
   let getWords = JSON.parse(getArray);
+
+  let oldItems = JSON.parse(localStorage.getItem("searches")) || [];
 
   //Building a card for each word found in storage
   getWords.forEach((element) => {
@@ -32,6 +35,7 @@ function getWordsFromLocalStorage() {
     newDivForMeaning.innerText = currMeaning;
     const newDivForButton = document.createElement("div");
     newDivForButton.setAttribute("id", "delete-button");
+    newDivForButton.setAttribute("class", element.id);
     const newIMG = document.createElement("img");
     newIMG.src = "src/img/delete.png";
     newIMG.alt = "Delete_Button";
