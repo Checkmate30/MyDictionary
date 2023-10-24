@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Dictionary</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-</head>
+  </head>
 
-<body onload="getWordsFromLocalStorage()">
+  <body onload="getWordsFromLocalStorage()">
     <!-- Navigation bar -->
     <nav class="navbar">
-        <div class="logo">
-            <img src="src\img\logo.png" alt="Logo">
-            <h2 class="title-heading">SEARCH HISTORY</h2>
-        </div>
-        <button id="search-button" onclick="searchPageButton()">SEARCH</button>
+      <div class="logo">
+        <img src="src\img\logo.png" alt="Logo" />
+        <h2 class="title-heading">SEARCH HISTORY</h2>
+      </div>
+      <button id="search-button" onclick="searchPageButton()">SEARCH</button>
     </nav>
 
     <!-- History cards section -->
-    <section id="history-container">
-        
-    </section>
-</body>
-
+    <section id="history-container"></section>
+  </body>
 </html>

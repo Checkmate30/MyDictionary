@@ -7,75 +7,90 @@ const searchBox = document.getElementById("search-box");
 const resultContainer = document.getElementById("search-container");
 const historyContainer = document.getElementById("history-container");
 
-
 // Function for history button clicked.
 function historyPageButton() {
   window.location.href = "history.html";
 }
-
-// Function to get words from storage as soon as the history page loads.
-function getWordsFromLocalStorage() {
-  let getArray = localStorage.getItem("searches");
-  let getWords = JSON.parse(getArray);
-
-  let oldItems = JSON.parse(localStorage.getItem("searches")) || [];
-
-  //Building a card for each word found in storage
-  getWords.forEach((element) => {
-    const currWord = element.word;
-    const currMeaning = element.meaning;
-
-    const newOuterDiv = document.createElement("div");
-    newOuterDiv.classList.add("card-body");
-    const newDivForWord = document.createElement("div");
-    newDivForWord.classList.add("word-container");
-    newDivForWord.innerText = "Word: " + currWord;
-    const newDivForMeaning = document.createElement("div");
-    newDivForMeaning.classList.add("description-container");
-    newDivForMeaning.innerText = currMeaning;
-    const newDivForButton = document.createElement("div");
-    newDivForButton.setAttribute("id", "delete-button");
-    newDivForButton.setAttribute("class", element.id);
-    const newIMG = document.createElement("img");
-    newIMG.src = "src/img/delete.png";
-    newIMG.alt = "Delete_Button";
-    // newIMG.setAttribute("id", [arrayLength + 1]);
-    newIMG.setAttribute("onclick", "deleteWordsFromLocalStorage()");
-    newDivForButton.appendChild(newIMG);
-
-    historyContainer
-      .appendChild(newOuterDiv)
-      .append(newDivForWord, newDivForMeaning, newDivForButton);
-  });
-}
-
-// funtion to delete a card from history page
-function deleteWordsFromLocalStorage() {}
 
 // Function for Search button clicked to come back to search page.
 function searchPageButton() {
   window.location.href = "index.html";
 }
 
-//function to call API, fetch and display the result in DOM
-function searchButtonClicked() {
-  currentSearch = searchBox.value;
-  console.log(currentSearch); // for confirmation purpose, can be removed later on
+// Function to get words from storage as soon as the history page loads.
+function getWordsFromLocalStorage() {
+  if (localStorage.getItem("searches")) {
+    let getArray = localStorage.getItem("searches");
+    let getWords = JSON.parse(getArray);
 
-  //API call
-  const api_call = "https://api.dictionaryapi.dev/api/v2/entries/en/";
-  async function getResult() {
-    //getting response
-    const response = await fetch(api_call + [currentSearch]);
+    //let oldItems = JSON.parse(localStorage.getItem("searches")) || [];
+
+    //Building a card for each word found in storage
+    getWords.forEach((element) => {
+      const currWord = element.word;
+      const currMeaning = element.meaning;
+
+      let divClass = "mainCardDiv" + element.id;
+      const newOuterDiv = document.createElement("div");
+      newOuterDiv.classList.add("card-body");
+      newOuterDiv.classList.add(divClass);
+      const newDivForWord = document.createElement("div");
+      newDivForWord.classList.add("word-container");
+      newDivForWord.innerText = "Word: " + currWord;
+      const newDivForMeaning = document.createElement("div");
+      newDivForMeaning.classList.add("description-container");
+      newDivForMeaning.innerText = currMeaning;
+      const newDivForButton = document.createElement("div");
+      newDivForButton.setAttribute("class", "delete-button");
+      const newIMG = document.createElement("img");
+      newIMG.src = "src/img/delete.png";
+      newIMG.alt = "Delete_Button";
+      newIMG.id = element.id;
+      newIMG.setAttribute(
+        "onclick",
+        "deleteWordFromLocalStorage(" + element.id + ")"
+      );
+      newDivForButton.appendChild(newIMG);
+
+      historyContainer
+        .appendChild(newOuterDiv)
+        .append(newDivForWord, newDivForMeaning, newDivForButton);
+    });
+  }
+}
+
+// funtion to delete a card from history page
+function deleteWordFromLocalStorage(ImgId) {
+  if (localStorage.getItem("searches").length > 0) {
+    let getArray = localStorage.getItem("searches");
+    let getWords = JSON.parse(getArray);
+
+    const filteredData = getWords.filter(function (item) {
+      return item.id !== ImgId;
+    });
+
+    getWords = JSON.stringify(filteredData);
+    localStorage.setItem("searches", getWords);
+    location.reload();
+  }
+}
+
+//function to call API, fetch and display the result in DOM
+async function searchButtonClicked() {
+  currentSearch = searchBox.value;
+  // console.log(currentSearch); // for confirmation purpose, can be removed later on
+
+  //API Call and getting response
+  const response = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + [currentSearch]);
+
+  if (response.status == 200) {
     //parse to JSON
     const data = await response.json();
-    // console.log(data[0].meanings[0].definitions[0].definition);
     const receivedDefinition = data[0].meanings[0].definitions[0].definition;
 
-    const resultDiv = document.createElement("div");
-    resultDiv.setAttribute("id", "result");
+    const resultDiv = document.getElementById("result");
+    resultDiv.style.display = "block";
     resultDiv.innerHTML = receivedDefinition;
-    resultContainer.appendChild(resultDiv);
 
     //Getting old words from storage
     let oldItems = JSON.parse(localStorage.getItem("searches")) || [];
@@ -85,9 +100,9 @@ function searchButtonClicked() {
 
     //Saving current word with description in a new object
     const wordObj = {
-      id: [arrayLength + 1],
-      word: [currentSearch],
-      meaning: [receivedDefinition],
+      id: arrayLength + 1,
+      word: currentSearch,
+      meaning: receivedDefinition,
     };
 
     console.log(wordObj);
@@ -98,7 +113,7 @@ function searchButtonClicked() {
 
     //saving the updated array.
     localStorage.setItem("searches", JSON.stringify(oldItems));
+  } else {
+    alert("Could not find data in the dictionary!!");
   }
-
-  getResult();
 }

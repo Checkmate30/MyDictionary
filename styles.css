@@ -147,11 +147,11 @@ input {
     overflow: auto;
 }
 
-#delete-button {
+.delete-button {
     margin-bottom: 0px;
 }
 
-#delete-button>img {
+.delete-button>img {
     height: 40px;
     width: 30px;
     float: right;
@@ -164,11 +164,11 @@ input {
     border-color: rgb(56, 137, 175);
 }
 
-#delete-button>img:hover {
+.delete-button>img:hover {
     box-shadow: 0px 0px 5px 3px grey;
 }
 
-#delete-button>img:active {
+.delete-button>img:active {
     box-shadow: 0px 0px 4px 1px grey;
     height: 39px;
     width: 29px;

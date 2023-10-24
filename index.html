@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Dictionary</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Navigation bar -->
     <nav class="navbar">
-        <div class="logo">
-            <img src="src\img\logo.png" alt="Logo">
-            <h1 class="title-heading">MY DICTIONARY</h1>
-        </div>
-        <button id="history-button" onclick="historyPageButton()">HISTORY</button>
+      <div class="logo">
+        <img src="src\img\logo.png" alt="Logo" />
+        <h1 class="title-heading">MY DICTIONARY</h1>
+      </div>
+      <button id="history-button" onclick="historyPageButton()">HISTORY</button>
     </nav>
 
     <!-- Search section -->
     <section id="search-container">
-        <div>
-            <h1>Search for new word</h1>
-        </div>
-        <div id="search-icon-container">
-            <input type="search" name="search" id="search-box">
-            <img src="src\img\search_button.png" alt="Search Icon" onclick="searchButtonClicked()">
-        </div>
-        <!-- <div id="result">
-
-        </div> -->
+      <div>
+        <h1>Search for new word</h1>
+      </div>
+      <div id="search-icon-container">
+        <input type="search" name="search" id="search-box" />
+        <img
+          src="src\img\search_button.png"
+          alt="Search Icon"
+          onclick="searchButtonClicked()"
+        />
+      </div>
+      <div id="result" style="display: none"></div>
     </section>
-</body>
-
+  </body>
 </html>
